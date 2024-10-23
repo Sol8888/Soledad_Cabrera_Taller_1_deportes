@@ -13,7 +13,7 @@ namespace Soledad_Cabrera_Taller_1_deportes.Models
         public int Titulos { get; set; }
         public bool AceptaExtranejros { get; set; }
 
-        public Estadio Estadio { get; set; }
+        public Estadio? Estadio { get; set; }
 
         [ForeignKey("Estadio")]
         public int IdEstadio { get; set; }

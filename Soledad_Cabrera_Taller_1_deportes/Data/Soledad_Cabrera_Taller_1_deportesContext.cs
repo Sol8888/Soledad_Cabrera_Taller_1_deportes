@@ -15,5 +15,7 @@ namespace Soledad_Cabrera_Taller_1_deportes.Data
         }
 
         public DbSet<Soledad_Cabrera_Taller_1_deportes.Models.Jugador> Jugador { get; set; } = default!;
+        public DbSet<Soledad_Cabrera_Taller_1_deportes.Models.Equipo> Equipo { get; set; } = default!;
+        public DbSet<Soledad_Cabrera_Taller_1_deportes.Models.Estadio> Estadio { get; set; } = default!;
     }
 }
