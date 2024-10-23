@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Soledad_Cabrera_Taller_1_deportes.Models
 {
@@ -13,6 +14,8 @@ namespace Soledad_Cabrera_Taller_1_deportes.Models
         public bool AceptaExtranejros { get; set; }
 
         public Estadio Estadio { get; set; }
+
+        [ForeignKey("Estadio")]
         public int IdEstadio { get; set; }
     }
 }
