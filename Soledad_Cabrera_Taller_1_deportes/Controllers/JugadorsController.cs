@@ -56,7 +56,7 @@ namespace Soledad_Cabrera_Taller_1_deportes.Controllers
             {
                 Jugadores = await jugadores.Include(j => j.Equipo).ToListAsync(),
                 Equipos = new SelectList(await equipoQuery.Distinct().ToListAsync()),
-                JugadoEquipo = jugadorEquipo,
+                JugadoEquipo = string.Empty,
                 SearchString = searchString
             };
 

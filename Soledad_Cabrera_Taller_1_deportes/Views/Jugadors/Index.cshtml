@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Soledad_Cabrera_Taller_1_deportes.Models.Jugador>
+﻿@model JugadorEquipo
 
 @{
     ViewData["Title"] = "Index";
@@ -7,7 +7,7 @@
 <h1>Jugadores</h1>
 
 <p>
-    <a asp-action="Create"class="btn btn-primary">Crear</a>
+    <a asp-action="Create" class="btn btn-primary">Crear</a>
 </p>
 <form asp-controller="Jugadors" asp-action="Index" method="get">
     <p>
@@ -27,10 +27,10 @@
 <table class="table">
     <thead>
         <tr>
-            <th>@Html.DisplayNameFor(model => model.Jugadores[0].Nombre)</th>
-            <th>@Html.DisplayNameFor(model => model.Jugadores[0].Posición)</th>
-            <th>@Html.DisplayNameFor(model => model.Jugadores[0].Edad)</th>
-            <th>@Html.DisplayNameFor(model => model.Jugadores[0].Equipo.Nombre)</th>
+            <th>@Html.DisplayNameFor(model => model.Jugadores.FirstOrDefault().Nombre)</th>
+            <th>@Html.DisplayNameFor(model => model.Jugadores.FirstOrDefault().Posición)</th>
+            <th>@Html.DisplayNameFor(model => model.Jugadores.FirstOrDefault().Edad)</th>
+            <th>@Html.DisplayNameFor(model => model.Jugadores.FirstOrDefault().Equipo.Nombre)</th>
             <th></th>
         </tr>
     </thead>
