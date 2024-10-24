@@ -16,6 +16,7 @@ namespace Soledad_Cabrera_Taller_1_deportes.Models
 
         [ForeignKey("Equipo")]
         public int IdEquipo { get; set; }
+
         
 
     }

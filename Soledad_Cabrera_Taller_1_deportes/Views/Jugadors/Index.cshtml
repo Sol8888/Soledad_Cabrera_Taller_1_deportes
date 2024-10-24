@@ -9,26 +9,33 @@
 <p>
     <a asp-action="Create"class="btn btn-primary">Crear</a>
 </p>
+<form asp-controller="Jugadors" asp-action="Index" method="get">
+    <p>
+        
+        <select asp-for="JugadoEquipo" asp-items="Model.Equipos" class="form-control">
+            <option value="">Todos los Equipos</option>
+        </select>
+
+        
+        <label>
+            Buscar jugadores por equipo:
+            <input type="text" asp-for="SearchString" class="form-control" />
+        </label>
+        <input type="submit" value="Filtrar" class="btn btn-primary" />
+    </p>
+</form>
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Nombre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Posición)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Edad)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Equipo)
-            </th>
+            <th>@Html.DisplayNameFor(model => model.Jugadores[0].Nombre)</th>
+            <th>@Html.DisplayNameFor(model => model.Jugadores[0].Posición)</th>
+            <th>@Html.DisplayNameFor(model => model.Jugadores[0].Edad)</th>
+            <th>@Html.DisplayNameFor(model => model.Jugadores[0].Equipo.Nombre)</th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (var item in Model.Jugadores) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Nombre)
@@ -46,6 +53,8 @@
                 <a asp-action="Edit" asp-route-id="@item.Id"class="btn btn-secondary">Editar</a> |
                 <a asp-action="Details" asp-route-id="@item.Id"class="btn btn-info">Detalles</a> |
                 <a asp-action="Delete" asp-route-id="@item.Id"class="btn btn-danger">Borrar</a>
+                
+
             </td>
         </tr>
 }

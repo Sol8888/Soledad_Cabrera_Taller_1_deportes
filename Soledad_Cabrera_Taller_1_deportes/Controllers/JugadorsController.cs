@@ -20,10 +20,51 @@ namespace Soledad_Cabrera_Taller_1_deportes.Controllers
         }
 
         // GET: Jugadors
-        public async Task<IActionResult> Index()
+        [HttpPost]
+        public string Index(string searchString, bool notUsed)
         {
-            var soledad_Cabrera_Taller_1_deportesContext = _context.Jugador.Include(j => j.Equipo);
-            return View(await soledad_Cabrera_Taller_1_deportesContext.ToListAsync());
+            return "From [HttpPost]Index: filter on " + searchString;
+        }
+        public async Task<IActionResult> Index(string searchString, string jugadorEquipo)
+        {
+            if (_context.Jugador == null) 
+            { 
+                return Problem("Es nulo"); 
+            }
+
+            IQueryable<string> equipoQuery = from j in _context.Jugador
+                            orderby j.Equipo.Nombre
+                            select j.Equipo.Nombre;
+
+            var jugadores = from j in _context.Jugador
+                            select j;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+
+                jugadores = jugadores.Where(s => s.Equipo.Nombre.ToUpper().Contains(searchString.ToUpper()));
+
+            }
+
+            if (!String.IsNullOrEmpty(jugadorEquipo))
+            {
+                jugadores = jugadores.Where(s => s.Equipo.Nombre == jugadorEquipo);
+            }
+            
+            
+
+            var jugadoresVM = new JugadorEquipo
+            {
+                Jugadores = await jugadores.Include(j => j.Equipo).ToListAsync(),
+                Equipos = new SelectList(await equipoQuery.Distinct().ToListAsync()),
+                JugadoEquipo = jugadorEquipo,
+                SearchString = searchString
+            };
+
+            return View(jugadoresVM);
+
+            //var soledad_Cabrera_Taller_1_deportesContext = _context.Jugador.Include(j => j.Equipo);
+            //return View(await soledad_Cabrera_Taller_1_deportesContext.ToListAsync());
+
         }
 
         // GET: Jugadors/Details/5
@@ -160,5 +201,6 @@ namespace Soledad_Cabrera_Taller_1_deportes.Controllers
         {
             return _context.Jugador.Any(e => e.Id == id);
         }
+
     }
 }
